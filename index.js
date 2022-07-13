@@ -51,29 +51,33 @@ watchTutorialCallBack((message) =>{
 //* Here we transform it to Promise example
 //* if we look for the code above I didn't change so much code but I have the same output
 //* In here promises give us more clean code
-function watchTutorialPromise(){
-    return new Promise ((resolve, reject) =>{
-        if (userLeft){
-            reject({
-                name:"user left",
-                message:" :("
-            })
-        }else if(userWatchingCatMeme){
-            reject ({
-                name:"User Watching Cat Meme",
-                message:"Dog are smaller than cats"
-            })
-        }else{
-            resolve("Thumbs up and follow me")
-        }
-    })
+
+const userleft = false;
+const userWatchingCatMeme = false;
+
+const watchingtutorialCallback = (callback, errorCallback ) =>{
+    if (userleft){
+        errorCallback({
+            name:"user left",
+            message2: "sad"
+        })
+    }else if (userWatchingCatMeme) {
+        errorCallback({
+            name:"user is watching CAt meme",
+            message2:"Dogs are smarter than cats"
+        })
+    }else{
+        callback("Thumbs up! Follow me :)")
+    }
 }
 
-watchTutorialPromise().then((message) =>{
-    console.log("success: " + message)
-}).catch((error) =>{
-    console.log(error.name + " " + error.message)
-})
+
+watchingtutorialCallback ((message2) =>{
+    console.log("success", message2)
+}, (error) =>{
+    console.log(error.name + "  " + error.message2)
+}
+)
 
 //* Some examples with promises
 
